@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">640664929173</string>
+    <string name="google_api_key" translatable="false">AIzaSyCppKZuv1sA8IutYB496sRfUnxylJlDNgc</string>
+    <string name="google_app_id" translatable="false">1:640664929173:android:f24a78857ddb1df15eec9c</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCppKZuv1sA8IutYB496sRfUnxylJlDNgc</string>
+    <string name="google_storage_bucket" translatable="false">cen-banking-app-869bd.firebasestorage.app</string>
+    <string name="project_id" translatable="false">cen-banking-app-869bd</string>
+</resources>

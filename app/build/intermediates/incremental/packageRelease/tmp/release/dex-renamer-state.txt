@@ -1,0 +1,13 @@
+#Tue Dec 17 22:56:51 SGT 2024
+base.0=D\:\\School\\MobileDev\\Bankning-App-UI-main\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+base.1=D\:\\School\\MobileDev\\Bankning-App-UI-main\\app\\build\\intermediates\\global_synthetics_dex\\release\\classes.dex
+base.2=D\:\\School\\MobileDev\\Bankning-App-UI-main\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes2.dex
+base.3=D\:\\School\\MobileDev\\Bankning-App-UI-main\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes3.dex
+path.0=classes.dex
+path.1=classes.dex
+path.2=classes2.dex
+path.3=classes3.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex
+renamed.3=classes4.dex

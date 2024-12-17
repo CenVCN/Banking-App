@@ -58,10 +58,15 @@ class WalletScreen {
                 .addOnSuccessListener { snapshot ->
                     val currentBalance = snapshot.getValue(Double::class.java) ?: 0.0
                     val newBalance = currentBalance + amount
+                    val newInterest = Utils.calculateInterest(newBalance)
                     database.child("Users").child(userId).child("balance").setValue(newBalance)
                         .addOnSuccessListener {
-                            recordTransaction("add", amount)
-                            onSuccess()
+                            database.child("Users").child(userId).child("interest").setValue(newInterest)
+                                .addOnSuccessListener {
+                                    recordTransaction("add", amount)
+                                    onSuccess()
+                                }
+                                .addOnFailureListener { onFailure(it) }
                         }
                         .addOnFailureListener { onFailure(it) }
                 }.addOnFailureListener { onFailure(it) }
@@ -86,15 +91,19 @@ class WalletScreen {
                             val newCardBalance = currentCardBalance - amount
                             cardRef.child(card.key!!).child("balance").setValue(newCardBalance)
                                 .addOnSuccessListener {
-                                    // Update user's balance
                                     database.child("Users").child(userId).child("balance").get()
                                         .addOnSuccessListener { userSnapshot ->
                                             val currentUserBalance = userSnapshot.getValue(Double::class.java) ?: 0.0
                                             val newUserBalance = currentUserBalance + amount
+                                            val newInterest = Utils.calculateInterest(newUserBalance)
                                             database.child("Users").child(userId).child("balance").setValue(newUserBalance)
                                                 .addOnSuccessListener {
-                                                    recordTransaction("withdraw", amount)
-                                                    onSuccess()
+                                                    database.child("Users").child(userId).child("interest").setValue(newInterest)
+                                                        .addOnSuccessListener {
+                                                            recordTransaction("withdraw", amount)
+                                                            onSuccess()
+                                                        }
+                                                        .addOnFailureListener { onFailure(it) }
                                                 }
                                                 .addOnFailureListener { onFailure(it) }
                                         }
@@ -119,10 +128,15 @@ class WalletScreen {
                     val currentBalance = snapshot.getValue(Double::class.java) ?: 0.0
                     if (currentBalance >= amount) {
                         val newBalance = currentBalance - amount
+                        val newInterest = Utils.calculateInterest(newBalance)
                         database.child("Users").child(userId).child("balance").setValue(newBalance)
                             .addOnSuccessListener {
-                                recordTransaction("send", amount)
-                                onSuccess()
+                                database.child("Users").child(userId).child("interest").setValue(newInterest)
+                                    .addOnSuccessListener {
+                                        recordTransaction("send", amount)
+                                        onSuccess()
+                                    }
+                                    .addOnFailureListener { onFailure(it) }
                             }
                             .addOnFailureListener { onFailure(it) }
                     } else {

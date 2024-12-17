@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="D:\School\MobileDev\Bankning-App-UI-main\app"
+    name=":app"
+    type="APP"
+    maven="Banking App:app:"
+    agpVersion="8.1.3"
+    buildFolder="build"
+    bootClassPath="D:\AndroidStudio\AndroidSDK\platforms\android-34\android.jar;D:\AndroidStudio\AndroidSDK\build-tools\33.0.1\core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-34"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

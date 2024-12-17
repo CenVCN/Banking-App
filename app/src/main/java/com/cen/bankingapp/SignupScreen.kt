@@ -18,6 +18,8 @@ import com.cen.bankingapp.CurrenciesSection
 import com.cen.bankingapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.cen.bankingapp.Utils
+import com.cen.bankingapp.Utils.calculateInterest
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,6 +49,7 @@ fun SignupScreen(onSignupSuccess: () -> Unit) {
                         "name" to name,
                         "email" to email,
                         "balance" to 0.0,
+                        "interest" to calculateInterest(0.0),
                         "transactions" to emptyMap<String, Any>(),
                         "cards" to emptyMap<String, Any>()
                     )

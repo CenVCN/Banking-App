@@ -35,17 +35,21 @@ import kotlinx.coroutines.tasks.await
 fun WalletSection() {
     val userId = FirebaseAuth.getInstance().currentUser?.uid
     val balance = remember { mutableStateOf(0.0) }
+    val interest = remember { mutableStateOf(0.0) }
 
     LaunchedEffect(userId) {
         if (userId != null) {
             try {
                 val database = FirebaseDatabase.getInstance().reference
-                val balanceRef = database.child("Users").child(userId).child("balance")
-                val balanceSnapshot = balanceRef.get().await()
+                val userRef = database.child("Users").child(userId)
+                val balanceSnapshot = userRef.child("balance").get().await()
+                val interestSnapshot = userRef.child("interest").get().await()
                 balance.value = balanceSnapshot.getValue(Double::class.java) ?: 0.0
+                interest.value = interestSnapshot.getValue(Double::class.java) ?: 0.0
             } catch (e: Exception) {
                 // Handle the error appropriately
                 balance.value = 0.0
+                interest.value = 0.0
             }
         }
     }
@@ -68,6 +72,12 @@ fun WalletSection() {
                 text = "$ ${balance.value}",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Interest: $ ${interest.value}",
+                fontSize = 17.sp,
                 color = MaterialTheme.colorScheme.onBackground
             )
         }
